@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 #To run on local machine User must generate AWS token/keys in credentials file
-#Author: Joey Magnus | jmagnus@slyport.com | jmagnus@manh.com
+#Author: Joey Magnus | jmagnus@slyport.com
 ########################################################
 
 import boto3
@@ -15,8 +15,8 @@ def main():
     while i < len(r53zones['HostedZones']):
         srcID = r53zones['HostedZones'][i]['Id']
         srcName = r53zones['HostedZones'][i]['Name']
-        add_record(srcID, srcName)
-        print(srcID + srcName)
+        response = add_record(srcID, srcName)
+        print(srcID + srcName + response)
         i += 1
 
 #Function to write record to Zone File
@@ -37,9 +37,10 @@ def add_record(sourceid, sourcename):
 							}
 						}]
 		})
+		return reply
 	except Exception as e:
 		print (e)
-
+    
 main()
 
 
