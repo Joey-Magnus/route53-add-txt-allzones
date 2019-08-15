@@ -16,7 +16,7 @@ def main():
         srcID = r53zones['HostedZones'][i]['Id']
         srcName = r53zones['HostedZones'][i]['Name']
         response = add_record(srcID, srcName)
-        print(srcID + srcName + response)
+        print(srcID, srcName, response['ResponseMetadata']['HTTPStatusCode'])
         i += 1
 
 #Function to write record to Zone File
